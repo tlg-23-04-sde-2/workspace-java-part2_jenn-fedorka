@@ -8,10 +8,7 @@
 
 package com.javatunes.catalog;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 // OF COURSE THIS CLASS DOESN'T COMPILE
 // Your first job is to fulfill the contract that this class has signed.
@@ -84,7 +81,8 @@ public class InMemoryCatalog implements Catalog {
 
     @Override
     public Collection<MusicItem> getAll() {
-        return catalogData.subList(0,catalogData.size());
+        //return catalogData.subList(0,catalogData.size());
+        return Collections.unmodifiableCollection(catalogData); //read only view of catalogData
     }
 
     /**
