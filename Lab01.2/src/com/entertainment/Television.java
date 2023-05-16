@@ -1,6 +1,8 @@
 package com.entertainment;
+import java.util.Objects;
 
-public class Television {
+//Be consistent with equals. natural order must used the same properties that is used in equals
+public class Television implements Comparable<Television> {
 
     //instance variables
     private String brand;
@@ -14,6 +16,8 @@ public class Television {
     }
 
     public Television(String brand, int volume) {
+        setBrand(brand);
+        setVolume(volume);
     }
 
     //business methods
@@ -42,8 +46,49 @@ public class Television {
         this.volume = volume;
     }
 
-    //toString method
+    //to be consitant with equals, you must use same properties for natural order than
+    //use in equals
 
+    //comparator method
+    @Override
+    public int compareTo(Television other) {
+        int result = this.getBrand().compareTo(other.getBrand());
+
+        if (result == 0) {
+            result = Integer.compare(this.getVolume(), other.getVolume());
+        }
+
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        //poorly written hash function because it yields has collisions
+        //Hash collision is when different objects hash to the same value -dumb luck
+        //return getBrand().length() + getVolume();
+
+        //delegate to objects hash to minimize hash collisions
+        return Objects.hash(getBrand(), getVolume());
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = false;
+
+        if (obj instanceof Television) {
+            //downcast obj to more specific type Television, to call Television methods
+            Television other = (Television) obj;
+
+            //Do the checks: business equality is defined by brand and volume
+            result = Objects.equals(this.getBrand(), other.getBrand()) &&  //null safe check
+                     this.getVolume() == other.getVolume();
+        }
+        return result;
+    }
+
+
+    //toString method
     @Override
     public String toString() {
         return String.format("%s: Brand = %S, " + "Volume = %S, Channel = %S",
