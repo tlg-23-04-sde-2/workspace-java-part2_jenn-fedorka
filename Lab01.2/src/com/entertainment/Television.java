@@ -88,11 +88,33 @@ public class Television implements Comparable<Television> {
     }
 
 
-    //toString method
-    @Override
-    public String toString() {
-        return String.format("%s: Brand = %S, " + "Volume = %S, Channel = %S",
-                getClass().getSimpleName(), getBrand(), getVolume(), getCurrentChannel());
-    }
+
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (this == obj) return true;
+//
+//        if (obj == null || this.getClass() != obj.getClass()) return false;
+//
+//        Television that = (Television) obj;
+//
+//        return this.getVolume() == that.getVolume() &&
+//                Objects.equals(this.getBrand(), that.getBrand());
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(getBrand(), getVolume());
+//    }
+//
+//
+//    //toString method
+//    @Override
+//    public String toString() {
+//        return String.format("%s: Brand = %S, " + "Volume = %S, Channel = %S",
+//                getClass().getSimpleName(), getBrand(), getVolume(), getCurrentChannel());
+//    }
+//
+//
 
 }
