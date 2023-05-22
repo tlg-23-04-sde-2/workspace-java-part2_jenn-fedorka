@@ -39,7 +39,7 @@ import java.util.*;
  *   17       17    Dom        1    DEBIT_CARD
  */
 
-class Board {
+public class Board {
     private final Map<Integer,String> studentIdMap = loadStudentIdMap();
     private final Map<Integer,DuckRacer> racerMap  = new TreeMap<>();
 
@@ -48,7 +48,7 @@ class Board {
     //or we might need to create a new duckracer and put it in the map
     //need to make it win
 
-    public void updateBoard(int id, Reward reward){
+    public void update(int id, Reward reward){
         DuckRacer racer = null;
 
         if (racerMap.containsKey(id)){
@@ -67,18 +67,27 @@ class Board {
     }
 
     public void show() {
-        Collection<DuckRacer> racers = racerMap.values();
+        //if racerMap is empty print "no results to show"
 
-        System.out.println("Duck Race Results");
-        System.out.println("==============\n");
+        if (racerMap.isEmpty()) {
+            System.out.println();
+            System.out.println("There are no results to show.");
+            System.out.println();
+        }
+        else {
+            Collection<DuckRacer> racers = racerMap.values();
 
-        System.out.println("id      name    wins     rewards");
-        System.out.println("--      -----   -----    --------");
+            System.out.println("Duck Race Results");
+            System.out.println("==============\n");
+
+            System.out.println("id      name    wins     rewards");
+            System.out.println("--      -----   -----    --------");
 
 //see formatted output for fixed column width
-        for(DuckRacer racer: racers) {
-            System.out.printf("%s    %s     %s     %s\n", racer.getId(),
-                    racer.getName(), racer.getWins(), racer.getRewards());
+            for(DuckRacer racer: racers) {
+                System.out.printf("%s    %s     %s     %s\n", racer.getId(),
+                        racer.getName(), racer.getWins(), racer.getRewards());
+            }
         }
     }
 
