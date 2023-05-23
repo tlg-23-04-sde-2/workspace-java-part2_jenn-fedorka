@@ -6,11 +6,11 @@ import com.duckrace.Reward;
 import java.util.Locale;
 import java.util.Scanner;
 
-//application controller- sets up the system classes, orchestrates overall flow of app
+//application controller- sets up the system objects, orchestrates overall flow of app
 //prompts user for inputs and forward those input into the system.
 public class DuckRaceApp {
     private final Scanner scanner = new Scanner(System.in); //read inputs from console
-    private final Board board= new Board();
+    private final Board board = Board.getInstance();
 
     public void execute() {
         welcome();
